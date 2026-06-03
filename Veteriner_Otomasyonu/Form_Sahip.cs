@@ -26,10 +26,6 @@ namespace Veteriner_Otomasyonu
 
                 dataGridView1.DataSource = sahipler;
 
-                dataGridView1.Columns["Sahip_Adi"].HeaderText = "Ad";
-                dataGridView1.Columns["Sahip_Soyadi"].HeaderText = "Soyad";
-                dataGridView1.Columns["Sahip_Telefon"].HeaderText = "Telefon";
-                dataGridView1.Columns["Sahip_Email"].HeaderText = "E-Posta";
 
                 dataGridView1.Columns["AdSoyad"].Visible = false;
 
@@ -108,10 +104,14 @@ namespace Veteriner_Otomasyonu
         {
             try
             {
-                if (dataGridView1.CurrentRow != null)
+                if (dataGridView1.Rows.Count == 0 || dataGridView1.CurrentRow == null)
+                {
+                    MessageBox.Show("Lütfen güncellemek istediğiniz kaydı seçiniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 {
                     if (txtSahipAdi.Text == "" || txtSahipSoyadi.Text == "" ||
-    txtSahipTelefon.Text == "" || txtSahipEmail.Text == "")
+                        txtSahipTelefon.Text == "" || txtSahipEmail.Text == "")
                     {
                         MessageBox.Show("Lütfen tüm alanları eksiksiz doldurunuz!");
                         return;
@@ -156,6 +156,11 @@ namespace Veteriner_Otomasyonu
         {
             try
             {
+                if (dataGridView1.Rows.Count == 0 || dataGridView1.CurrentRow == null || dataGridView1.CurrentRow.Cells["Sahip_Id"].Value == null)
+                {
+                    MessageBox.Show("Lütfen önce silmek istediğiniz kaydı seçiniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 DialogResult sonuc = MessageBox.Show(
                     "Silmek istediğinize emin misiniz?",
                     "Silme Onayı",
@@ -171,11 +176,24 @@ namespace Veteriner_Otomasyonu
 
                         if (sahip != null)
                         {
+                            bool hayvanVarMi = db.Hayvanlar.Any(h => h.Sahip_Id == selectedId);
+                            bool satisVarMi = db.Satislar.Any(s => s.Sahip_Id == selectedId);
+
+                            if (hayvanVarMi)
+                            {
+                                MessageBox.Show("Bu sahibe ait hayvan kayıtları bulunmaktadır! Önce hayvan kayıtlarını siliniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
+
+                            if (satisVarMi)
+                            {
+                                MessageBox.Show("Bu sahibe ait satış kayıtları bulunmaktadır! Önce satış kayıtlarını siliniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
+
                             db.Sahipler.Remove(sahip);
                             db.SaveChanges();
-
                             MessageBox.Show("Sahip Silindi!");
-
                             btnListele.PerformClick();
                         }
                     }

@@ -74,13 +74,18 @@ namespace Veteriner_Otomasyonu
             {
                 if (string.IsNullOrWhiteSpace(txtMiktar.Text))
 {
-    MessageBox.Show("Lütfen miktar giriniz.");
-    return;
+                MessageBox.Show("Lütfen miktar giriniz.");
+                return;
 }
                 int urunId = Convert.ToInt32(comboBoxUrun.SelectedValue);
                 Urun urun = db.Urunler.Find(urunId);
 
-                int miktar = Convert.ToInt32(txtMiktar.Text);
+                int miktar;
+                if (!int.TryParse(txtMiktar.Text, out miktar))
+                {
+                    MessageBox.Show("Lütfen miktar alanına sadece sayı giriniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
                 if (urun == null)
                 {
@@ -140,6 +145,11 @@ namespace Veteriner_Otomasyonu
         {
             try
             {
+                if (dataGridView1.Rows.Count == 0 || dataGridView1.CurrentRow == null)
+                {
+                    MessageBox.Show("Lütfen silmek istediğiniz kaydı seçiniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 DialogResult sonuc = MessageBox.Show(
                     "Silmek istediğinize emin misiniz?",
                     "Silme Onayı",
@@ -281,7 +291,11 @@ namespace Veteriner_Otomasyonu
         {
             try
             {
-                if (dataGridView1.CurrentRow != null)
+                if (dataGridView1.Rows.Count == 0 || dataGridView1.CurrentRow == null)
+                {
+                    MessageBox.Show("Lütfen güncellemek istediğiniz kaydı seçiniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 {
                     if (string.IsNullOrWhiteSpace(txtMiktar.Text))
                     {
@@ -301,7 +315,13 @@ namespace Veteriner_Otomasyonu
 
                         int yeniUrunId = Convert.ToInt32(comboBoxUrun.SelectedValue);
                         Urun yeniUrun = db.Urunler.Find(yeniUrunId);
-                        int yeniMiktar = Convert.ToInt32(txtMiktar.Text);
+                        
+                        int yeniMiktar;
+                        if (!int.TryParse(txtMiktar.Text, out yeniMiktar))
+                        {
+                            MessageBox.Show("Lütfen miktar alanına sadece sayı giriniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
 
                         if (yeniUrun == null)
                         {

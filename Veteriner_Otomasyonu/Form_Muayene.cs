@@ -131,6 +131,11 @@ namespace Veteriner_Otomasyonu
         {
             try
             {
+                if (dataGridView1.Rows.Count == 0 || dataGridView1.CurrentRow == null)
+                {
+                    MessageBox.Show("Lütfen silmek istediğiniz kaydı seçiniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 DialogResult sonuc = MessageBox.Show(
                     "Silmek istediğinize emin misiniz?",
                     "Silme Onayı",
@@ -248,7 +253,9 @@ namespace Veteriner_Otomasyonu
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && dataGridView1.Columns.Contains("Teshis") && dataGridView1.Columns.Contains("Tedavi"))
+            if (!dataGridView1.Columns.Contains("Muayene_Id"))
+                return;
+            if (e.RowIndex >= 0 && dataGridView1.Columns.Contains("Muayene_Id") && dataGridView1.Columns.Contains("Teshis") && dataGridView1.Columns.Contains("Tedavi"))
             {
                 txtTeshis.Text = dataGridView1.Rows[e.RowIndex].Cells["Teshis"].Value.ToString();
                 txtTedavi.Text = dataGridView1.Rows[e.RowIndex].Cells["Tedavi"].Value.ToString();
@@ -297,7 +304,11 @@ namespace Veteriner_Otomasyonu
         {
             try
             {
-                if (dataGridView1.CurrentRow != null)
+                if (dataGridView1.Rows.Count == 0 || dataGridView1.CurrentRow == null)
+                {
+                    MessageBox.Show("Lütfen güncellemek istediğiniz kaydı seçiniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 {
                     if (string.IsNullOrWhiteSpace(txtTeshis.Text) ||
                         string.IsNullOrWhiteSpace(txtTedavi.Text) ||

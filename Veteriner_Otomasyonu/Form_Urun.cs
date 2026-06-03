@@ -92,6 +92,11 @@ namespace Veteriner_Otomasyonu
         {
             try
             {
+                if (dataGridView1.Rows.Count == 0 || dataGridView1.CurrentRow == null)
+                {
+                    MessageBox.Show("Lütfen silmek istediğiniz kaydı seçiniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 DialogResult sonuc = MessageBox.Show(
                     "Silmek istediğinize emin misiniz?",
                     "Silme Onayı",
@@ -107,11 +112,17 @@ namespace Veteriner_Otomasyonu
 
                         if (urun != null)
                         {
+                            bool satisVarMi = db.Satislar.Any(s => s.Urun_Id == selectedId);
+
+                            if (satisVarMi)
+                            {
+                                MessageBox.Show("Bu ürüne ait satış kayıtları bulunmaktadır! Önce satış kayıtlarını siliniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
+
                             db.Urunler.Remove(urun);
                             db.SaveChanges();
-
                             MessageBox.Show("Ürün Silindi!");
-
                             btnListele.PerformClick();
                         }
                     }
@@ -127,6 +138,11 @@ namespace Veteriner_Otomasyonu
         {
             try
             {
+                if (dataGridView1.CurrentRow == null || dataGridView1.Rows.Count == 0)
+                {
+                    MessageBox.Show("Lütfen güncellemek istediğiniz kaydı seçiniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 if (string.IsNullOrWhiteSpace(txtUrunAdi.Text) ||
                     string.IsNullOrWhiteSpace(txtUrunTuru.Text) ||
                     string.IsNullOrWhiteSpace(txtUrunFiyati.Text) ||

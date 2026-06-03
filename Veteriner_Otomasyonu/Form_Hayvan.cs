@@ -93,6 +93,11 @@ namespace Veteriner_Otomasyonu
         {
             try
             {
+                if (dataGridView1.Rows.Count == 0 || dataGridView1.CurrentRow == null)
+                {
+                    MessageBox.Show("Lütfen silmek istediğiniz kaydı seçiniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 DialogResult sonuc = MessageBox.Show(
                     "Silmek istediğinize emin misiniz?",
                     "Silme Onayı",
@@ -108,11 +113,17 @@ namespace Veteriner_Otomasyonu
 
                         if (hayvan != null)
                         {
+                            bool muayeneVarMi = db.Muayeneler.Any(m => m.Hayvan_Id == selectedId);
+
+                            if (muayeneVarMi)
+                            {
+                                MessageBox.Show("Bu hayvana ait muayene kayıtları bulunmaktadır! Önce muayene kayıtlarını siliniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
+
                             db.Hayvanlar.Remove(hayvan);
                             db.SaveChanges();
-
                             MessageBox.Show("Hayvan Silindi!");
-
                             btnListele.PerformClick();
                         }
                     }
@@ -128,7 +139,11 @@ namespace Veteriner_Otomasyonu
         {
             try
             {
-                if (dataGridView1.CurrentRow != null)
+                if (dataGridView1.Rows.Count == 0 || dataGridView1.CurrentRow == null)
+                {
+                    MessageBox.Show("Lütfen güncellemek istediğiniz kaydı seçiniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 {
                     int selectedId = Convert.ToInt32(dataGridView1.CurrentRow.Cells["Hayvan_Id"].Value);
                     Hayvan hayvan = db.Hayvanlar.Find(selectedId);
