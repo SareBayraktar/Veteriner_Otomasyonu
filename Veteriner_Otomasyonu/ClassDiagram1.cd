@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Veteriner_Otomasyonu.Hayvan" Collapsed="true">
+    <Position X="5.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAACAAAAAAAAAAIAEAAAAAIAAAAAIQ=</HashCode>
+      <FileName>Hayvan.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Object" Collapsed="true">
+    <Position X="6" Y="2" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Veteriner_Otomasyonu.Muayene" Collapsed="true">
+    <Position X="11.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQIACABQAAAAAAAAAAAEAAAAQAABAAABAAAAAA=</HashCode>
+      <FileName>Muayene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Veteriner_Otomasyonu.Sahip" Collapsed="true">
+    <Position X="9.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAABAgBAY=</HashCode>
+      <FileName>Sahip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Veteriner_Otomasyonu.Satis" Collapsed="true">
+    <Position X="7.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAACAgCAACAAAAAAAAAAAAABEAAAAAAAQ=</HashCode>
+      <FileName>Satis.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Veteriner_Otomasyonu.Urun" Collapsed="true">
+    <Position X="3.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAEEAAAAAIAAAAAAAAAAAAIAAAAAAAAIAAAA=</HashCode>
+      <FileName>Urun.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Veteriner_Otomasyonu.Veteriner" Collapsed="true">
+    <Position X="1.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAIAQEAAAAAABAAAAI=</HashCode>
+      <FileName>Veteriner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Veteriner_Otomasyonu.Program" Collapsed="true">
+    <Position X="13.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Veteriner_Otomasyonu.Properties.Resources" Collapsed="true">
+    <Position X="8" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAwCECQAAhkEIAAQAACAEAQggAgAAAAYA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

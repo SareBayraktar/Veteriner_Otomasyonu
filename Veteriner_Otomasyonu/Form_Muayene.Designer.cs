@@ -180,9 +180,9 @@
             // 
             this.btnGeri.BackColor = System.Drawing.Color.Silver;
             this.btnGeri.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnGeri.Location = new System.Drawing.Point(670, 655);
+            this.btnGeri.Location = new System.Drawing.Point(679, 655);
             this.btnGeri.Name = "btnGeri";
-            this.btnGeri.Size = new System.Drawing.Size(158, 67);
+            this.btnGeri.Size = new System.Drawing.Size(163, 67);
             this.btnGeri.TabIndex = 13;
             this.btnGeri.Text = "↩ GERİ DÖN";
             this.btnGeri.UseVisualStyleBackColor = false;

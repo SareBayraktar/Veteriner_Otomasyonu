@@ -55,7 +55,7 @@ namespace Veteriner_Otomasyonu
             try
             {
                 if (txtSahipAdi.Text == "" || txtSahipSoyadi.Text == "" ||
-    txtSahipTelefon.Text == "" || txtSahipEmail.Text == "")
+                    txtSahipTelefon.Text == "" || txtSahipEmail.Text == "")
                 {
                     MessageBox.Show("Lütfen tüm alanları eksiksiz doldurunuz!");
                     return;
